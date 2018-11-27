@@ -1,4 +1,4 @@
-# memeapp2
+# memeapp2.0
 Udacity iOS Project - memeApp2.0
 
 Project Overview
