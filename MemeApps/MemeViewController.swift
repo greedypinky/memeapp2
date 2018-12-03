@@ -120,8 +120,9 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     func save() {
-        let _ = MyMeme(original: imageView.image!, memed: memedImage!, upperText: upperTextField.text!,
+        let meme = MyMeme(original: imageView.image!, memed: memedImage!, upperText: upperTextField.text!,
                                 bottomText: bottomTextField.text!)
+        MyMeme.append(meme: meme)
     }
     
     @objc func share() {
@@ -134,9 +135,16 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             
             if (success) {
                 self.save()
+                // navigate to the tableview
+                let tableView = self.storyboard?.instantiateViewController(withIdentifier: "memeTable") as! MemeTableViewController
+                self.navigationController?.present(tableView, animated: true, completion: nil)
+                
             }
         }
         present(activityViewController, animated: true, completion: nil)
+        // how do we know the sharing is done?
+        
+        // TODO we navigate here to the tab controller?
     }
     
     func generateMemedImage() -> UIImage? {

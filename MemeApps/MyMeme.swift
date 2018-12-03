@@ -27,3 +27,15 @@ struct MyMeme {
     
     
 }
+
+extension MyMeme {
+    
+    static var memelist : [MyMeme] = [MyMeme]()
+    
+    static func append(meme:MyMeme) {
+    
+        memelist.append(meme)
+    
+    }
+    
+}
