@@ -22,6 +22,10 @@ class MemeCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+         navigationItem.title = "Sent Meme"
+        
+        self.tabBarItem.image = UIImage(named: "collection")
+        self.tabBarItem.title = "Collection"
         
         let space:CGFloat = 3.0
         // when in landscape,  this calculation is not appropriate

@@ -16,8 +16,9 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
     @IBOutlet weak var toolBar: UIToolbar!
-    
+    var editMeme:MyMeme?
     var memedImage: UIImage?
+    var editMode:Bool = false
     
     var originalViewHight:CGFloat = 0
     
@@ -38,6 +39,28 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         originalViewHight = view.frame.origin.y
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(share))
         navigationItem.leftBarButtonItem?.isEnabled = false
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancel))
+        navigationItem.rightBarButtonItem?.isEnabled = false // allow user to cancel
+        if let _ = tabBarController? {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        
+        }
+        
+        // Initialize the information of the Meme
+        if let editImage = editMeme?.originalImage,
+           let editUpper = editMeme?.upperText,
+           let editBottom = editMeme?.bottomText {
+            imageView.image = editImage
+            upperTextField.text = editUpper
+            bottomTextField.text = editBottom
+            // In Edit mode we do not disable the upload button
+            navigationItem.leftBarButtonItem?.isEnabled = true
+            
+            editMode = true
+            
+        }
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -136,8 +159,13 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             if (success) {
                 self.save()
                 // navigate to the tableview
-                let tableView = self.storyboard?.instantiateViewController(withIdentifier: "memeTable") as! MemeTableViewController
+                //let tableView = self.storyboard?.instantiateViewController(withIdentifier: "memeTable") as! MemeTableViewController
+               // let tableView = self.storyboard?.instantiateViewController(withIdentifier: "memeTable") as! MemeTableViewController
+                
+                // memeTabBarController
+                let tableView = self.storyboard?.instantiateViewController(withIdentifier: "memeTabBarController") as! UITabBarController
                 self.navigationController?.present(tableView, animated: true, completion: nil)
+                
                 
             }
         }
@@ -145,6 +173,11 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         // how do we know the sharing is done?
         
         // TODO we navigate here to the tab controller?
+    }
+    
+    @objc func cancel() {
+        print("cancel")
+        navigationController?.popViewController(animated: true)
     }
     
     func generateMemedImage() -> UIImage? {

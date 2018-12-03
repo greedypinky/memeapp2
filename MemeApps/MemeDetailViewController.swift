@@ -13,24 +13,43 @@ import UIKit
 // and right button Edit which can navigate to the edit page
 class MemeDetailViewController: UIViewController {
     
+    @IBOutlet weak var memeUpper: UILabel!
     @IBOutlet weak var memeImage: UIImageView!
-    
-    @IBOutlet weak var memeLabel: UILabel!
-    
+    @IBOutlet weak var memeBottom: UILabel!
     
     var detailMeme: MyMeme! // force unwrap - when do we want to do this?
     
     override func viewWillAppear(_ animated: Bool) {
-        // TODO: need to initialize the image and label
-        
+        // TODO: Init the detail view
+        memeUpper.text = detailMeme.upperText
+        memeImage.image = detailMeme.memedImage
+        memeBottom.text = detailMeme.bottomText
     }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // Detail page Navigation Right Button is Edit button
+        // and click back - can go back to the previous List or Collection page.
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(edit))
+        
     }
     
-
+    
+    @objc func edit() {
+        
+        // TODO: Navigate back to the MemeViewController
+        // present the viewcontroller
+        // but push
+        let memeVC = storyboard?.instantiateViewController(withIdentifier: "memeCreateView") as! MemeViewController
+        memeVC.editMeme = detailMeme
+        //navigationController?.present(memeVC, animated: true, completion: nil)
+        memeVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(memeVC, animated: true)
+        
+    }
+    
     /*
     // MARK: - Navigation
 
