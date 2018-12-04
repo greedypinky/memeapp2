@@ -32,23 +32,23 @@ class MemeDetailViewController: UIViewController {
         // Detail page Navigation Right Button is Edit button
         // and click back - can go back to the previous List or Collection page.
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(edit))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(edit))
         
     }
     
     
-    @objc func edit() {
-        
-        // TODO: Navigate back to the MemeViewController
-        // present the viewcontroller
-        // but push
-        let memeVC = storyboard?.instantiateViewController(withIdentifier: "memeCreateView") as! MemeViewController
-        memeVC.editMeme = detailMeme
-        //navigationController?.present(memeVC, animated: true, completion: nil)
-        memeVC.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(memeVC, animated: true)
-        
-    }
+//    @objc func edit() {
+//
+//        // TODO: Navigate back to the MemeViewController
+//        // present the viewcontroller
+//        // but push
+//        let memeVC = storyboard?.instantiateViewController(withIdentifier: "memeCreateView") as! MemeViewController
+//        memeVC.editMeme = detailMeme
+//        //navigationController?.present(memeVC, animated: true, completion: nil)
+//        memeVC.hidesBottomBarWhenPushed = true
+//        navigationController?.pushViewController(memeVC, animated: true)
+//
+//    }
     
     /*
     // MARK: - Navigation

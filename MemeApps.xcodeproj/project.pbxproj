@@ -451,7 +451,6 @@
 		F755DE5C217D932D0020E24E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MemeApps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -468,7 +467,6 @@
 		F755DE5D217D932D0020E24E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MemeApps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

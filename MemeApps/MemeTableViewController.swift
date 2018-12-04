@@ -60,6 +60,10 @@ class MemeTableViewController: UITableViewController {
         // Do any additional setup after loading the view.
         let tabItems = self.tabBarController?.tabBar.items
         tabItems?[0].image = UIImage(named: "table")
+        tabItems?[0].title = "Table"
+        
+        tabItems?[1].image = UIImage(named: "collection")
+        tabItems?[1].title = "Collection"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(create))
         

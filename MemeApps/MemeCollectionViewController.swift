@@ -18,10 +18,16 @@ class MemeCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(create))
+        
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
          navigationItem.title = "Sent Meme"
         
         self.tabBarItem.image = UIImage(named: "collection")
@@ -44,9 +50,16 @@ class MemeCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(MemeCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+    }
+    
+    // nagvigate to the create meme page
+    @objc func create() {
+        let createVC = storyboard?.instantiateViewController(withIdentifier: "memeCreateView") as! MemeViewController
+        createVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(createVC, animated: true)
     }
 
     /*

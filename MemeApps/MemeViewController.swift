@@ -41,11 +41,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         navigationItem.leftBarButtonItem?.isEnabled = false
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancel))
-        navigationItem.rightBarButtonItem?.isEnabled = false // allow user to cancel
-        if let _ = tabBarController? {
-            navigationItem.rightBarButtonItem?.isEnabled = true
+        navigationItem.rightBarButtonItem?.isEnabled = true
         
-        }
         
         // Initialize the information of the Meme
         if let editImage = editMeme?.originalImage,
