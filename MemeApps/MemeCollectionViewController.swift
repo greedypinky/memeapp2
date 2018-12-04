@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "MemeCollectionViewCell"
 
 class MemeCollectionViewController: UICollectionViewController {
     @IBOutlet weak var flowlayout: UICollectionViewFlowLayout!
