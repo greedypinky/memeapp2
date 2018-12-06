@@ -13,17 +13,17 @@ import UIKit
 // and right button Edit which can navigate to the edit page
 class MemeDetailViewController: UIViewController {
     
-    @IBOutlet weak var memeUpper: UILabel!
+   // @IBOutlet weak var memeUpper: UILabel!
     @IBOutlet weak var memeImage: UIImageView!
-    @IBOutlet weak var memeBottom: UILabel!
+   // @IBOutlet weak var memeBottom: UILabel!
     
     var detailMeme: MyMeme! // force unwrap - when do we want to do this?
     
     override func viewWillAppear(_ animated: Bool) {
         // TODO: Init the detail view
-        memeUpper.text = detailMeme.upperText
+       // memeUpper.text = detailMeme.upperText
         memeImage.image = detailMeme.memedImage
-        memeBottom.text = detailMeme.bottomText
+      //  memeBottom.text = detailMeme.bottomText
     }
     override func viewDidLoad() {
         super.viewDidLoad()

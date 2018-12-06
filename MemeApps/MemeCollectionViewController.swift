@@ -37,14 +37,16 @@ class MemeCollectionViewController: UICollectionViewController {
         // when in landscape,  this calculation is not appropriate
         // maybe the solution is detect the device mode and use height to calculate the dimension
         let orientation = UIDevice.current.orientation
-        let dimension = UIDeviceOrientation.portrait == orientation ? ((view.frame.size.width - (2 * space)) / 3.0) : ((view.frame.size.height - (2 * space)) / 3.0)
-       // let dimension = (view.frame.size.width - (2 * space)) / 3.0
+        //let dimension = UIDeviceOrientation.portrait == orientation ? ((view.frame.size.width - (2 * space)) / 3.0) : ((view.frame.size.height - (2 * space)) / 3.0)
+        let dimension = (view.frame.size.width - (2 * space)) / 3.0
 
         //let dimension = (view.frame.size.width - (2 * space)) / 3.0
         flowlayout.minimumInteritemSpacing = space
         flowlayout.minimumLineSpacing = space
-        flowlayout.itemSize = CGSize(width: dimension, height: dimension)
+        //flowlayout.itemSize = CGSize(width: dimension, height: dimension)
         
+       // flowlayout.itemSize = CGSize(width: self.collectionView.bounds.width, height: 120)
+       // flowlayout.sectionHeadersPinToVisibleBounds = true
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -74,14 +76,16 @@ class MemeCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 1
+//    }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
+        //print("CollectionView memelist count:\(memelist.count)")
+        //print("CollectionView memelist count:\(String(describing: memelist[0].upperText))")
         return memelist.count
     }
 
@@ -89,9 +93,20 @@ class MemeCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MemeCollectionViewCell
     
         // TODO: Configure the cell
-        let meme = memelist[indexPath.row]
-        cell.memeImage.image = meme.memedImage
+        if (memelist.count > 0) {
+            let meme = memelist[indexPath.row]
+            cell.memeImage?.image = meme.memedImage
+        }
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let detailController = self.storyboard?.instantiateViewController(withIdentifier: "memeDetail") as! MemeDetailViewController
+        detailController.detailMeme = memelist[indexPath.row]
+        detailController.hidesBottomBarWhenPushed = true
+        // push so that we can go back
+        self.navigationController!.pushViewController(detailController, animated: true)
     }
 
     // MARK: UICollectionViewDelegate
