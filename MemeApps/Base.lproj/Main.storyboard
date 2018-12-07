@@ -165,14 +165,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNR-1Z-zn8" userLabel="memeImage">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNR-1Z-zn8" userLabel="memeImage">
                                             <rect key="frame" x="-163" y="-309" width="375" height="667"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
                                 </view>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="oNR-1Z-zn8" secondAttribute="bottom" id="vAL-rN-wIQ"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="memeImage" destination="oNR-1Z-zn8" id="kgm-Ic-WOB"/>
                                 </connections>

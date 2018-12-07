@@ -34,16 +34,17 @@ class MemeCollectionViewController: UICollectionViewController {
         self.tabBarItem.title = "Collection"
         
         let space:CGFloat = 3.0
+        //  TODO: Test in Landscape mode
         // when in landscape,  this calculation is not appropriate
         // maybe the solution is detect the device mode and use height to calculate the dimension
         let orientation = UIDevice.current.orientation
-        //let dimension = UIDeviceOrientation.portrait == orientation ? ((view.frame.size.width - (2 * space)) / 3.0) : ((view.frame.size.height - (2 * space)) / 3.0)
-        let dimension = (view.frame.size.width - (2 * space)) / 3.0
-
+        let dimension = UIDeviceOrientation.portrait == orientation ? ((view.frame.size.width - (2 * space)) / 3.0) : ((view.frame.size.height - (2 * space)) / 3.0)
+        //let dimension = (view.frame.size.width - (2 * space)) / 3.0
+        print("Dimension is \(dimension)")
         //let dimension = (view.frame.size.width - (2 * space)) / 3.0
         flowlayout.minimumInteritemSpacing = space
         flowlayout.minimumLineSpacing = space
-        //flowlayout.itemSize = CGSize(width: dimension, height: dimension)
+        flowlayout.itemSize = CGSize(width: dimension, height: dimension)
         
        // flowlayout.itemSize = CGSize(width: self.collectionView.bounds.width, height: 120)
        // flowlayout.sectionHeadersPinToVisibleBounds = true
@@ -52,7 +53,7 @@ class MemeCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(MemeCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        // self.collectionView!.register(MemeCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }

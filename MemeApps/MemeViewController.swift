@@ -38,7 +38,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         bottomTextField.delegate = self
         originalViewHight = view.frame.origin.y
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(share))
-        navigationItem.leftBarButtonItem?.isEnabled = false
+        //navigationItem.leftBarButtonItem?.isEnabled = false
+        enableShare(bool: false)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancel))
         navigationItem.rightBarButtonItem?.isEnabled = true
@@ -52,7 +53,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             upperTextField.text = editUpper
             bottomTextField.text = editBottom
             // In Edit mode we do not disable the upload button
-            navigationItem.leftBarButtonItem?.isEnabled = true
+            //navigationItem.leftBarButtonItem?.isEnabled = true
+            enableShare(bool: true)
             
             editMode = true
             
@@ -106,9 +108,18 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         if let originalImage = info[.originalImage] as? UIImage {
             // set the image to the imageview
             imageView.image = originalImage
+            
+            // TODO: can also generate the image at this point
+            if let image = generateMemedImage() {
+                memedImage = image
+                enableShare(bool: true)
+            }
+            
             dismiss(animated: true, completion: nil)
         
         }
+        
+       
     }
     
     func subscribeToKeyboardNotifications() {
@@ -162,8 +173,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 // memeTabBarController
                 let tableView = self.storyboard?.instantiateViewController(withIdentifier: "memeTabBarController") as! UITabBarController
                 self.navigationController?.present(tableView, animated: true, completion: nil)
-                
-                
             }
         }
         present(activityViewController, animated: true, completion: nil)
@@ -200,7 +209,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.navigationController?.setNavigationBarHidden(hide, animated: true)
     }
     
-    func disableShare(bool:Bool) {
+    func enableShare(bool:Bool) {
         
         navigationItem.leftBarButtonItem?.isEnabled = bool
     }
@@ -215,8 +224,11 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         print("tap around to dismiss keyboard!")
         view.endEditing(true)
         view.frame.origin.y = self.originalViewHight
-        self.memedImage = self.generateMemedImage()
-        self.navigationItem.leftBarButtonItem?.isEnabled = true
+
+        if let image = generateMemedImage() {
+            memedImage = image
+            enableShare(bool: true)
+        }
     }
     
     // MARK: UITextFieldDelegate methods
@@ -228,7 +240,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         textField.resignFirstResponder()
-        //save()
     }
     
     // Limit the width is not more than the current view's width
@@ -246,7 +257,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         view.frame.origin.y = originalViewHight
         if let image = generateMemedImage() {
             memedImage = image
-            self.navigationItem.leftBarButtonItem?.isEnabled = true
+            enableShare(bool: true)
         }
         return true
     }
