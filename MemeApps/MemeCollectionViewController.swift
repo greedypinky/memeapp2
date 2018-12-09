@@ -5,6 +5,7 @@
 //  Created by Man Wai  Law on 2018-11-28.
 //  Copyright © 2018 Rita's company. All rights reserved.
 //
+// ref: https://developer.apple.com/documentation/uikit/uicollectionview#//apple_ref/doc/uid/TP40012177-CH1-SW35
 
 import UIKit
 
@@ -23,6 +24,7 @@ class MemeCollectionViewController: UICollectionViewController {
         
         navigationItem.rightBarButtonItem?.isEnabled = true
         
+        collectionView?.reloadData()
     }
 
     override func viewDidLoad() {
@@ -45,17 +47,9 @@ class MemeCollectionViewController: UICollectionViewController {
         flowlayout.minimumInteritemSpacing = space
         flowlayout.minimumLineSpacing = space
         flowlayout.itemSize = CGSize(width: dimension, height: dimension)
-        
-       // flowlayout.itemSize = CGSize(width: self.collectionView.bounds.width, height: 120)
-       // flowlayout.sectionHeadersPinToVisibleBounds = true
-        
+  
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        // self.collectionView!.register(MemeCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
     
     // nagvigate to the create meme page
@@ -77,16 +71,7 @@ class MemeCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 1
-//    }
-
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        //print("CollectionView memelist count:\(memelist.count)")
-        //print("CollectionView memelist count:\(String(describing: memelist[0].upperText))")
         return memelist.count
     }
 
