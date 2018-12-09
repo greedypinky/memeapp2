@@ -17,14 +17,14 @@ struct MyMeme {
     let upperText:String?
     let bottomText:String?
     
-    init(original:UIImage?, memed:UIImage?,upperText:String?,bottomText:String?) {
-        self.originalImage = original
-        self.memedImage = memed
-        self.upperText = upperText
-        self.bottomText = bottomText
-    }
-    
-    
+//    init(original:UIImage?, memed:UIImage?,upperText:String?,bottomText:String?) {
+//        self.originalImage = original
+//        self.memedImage = memed
+//        self.upperText = upperText
+//        self.bottomText = bottomText
+//    }
+//
+//
     
 }
 

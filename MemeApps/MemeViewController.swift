@@ -151,7 +151,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     func save() {
-        let meme = MyMeme(original: imageView.image!, memed: memedImage!, upperText: upperTextField.text!,
+        let meme = MyMeme(originalImage: imageView.image!, memedImage: memedImage!, upperText: upperTextField.text!,
                                 bottomText: bottomTextField.text!)
         MyMeme.append(meme: meme)
     }
